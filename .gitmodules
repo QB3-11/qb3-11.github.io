@@ -1,3 +1,6 @@
 [submodule "projects/odin/EtchASketch"]
 	path = projects/odin/EtchASketch
 	url = git@github.com:QB3-11/EtchASketch.git
+[submodule "projects/odin/Rock-Paper-Scissors"]
+	path = projects/odin/Rock-Paper-Scissors
+	url = git@github.com:QB3-11/Rock-Paper-Scissors.git
