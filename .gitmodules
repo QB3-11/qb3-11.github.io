@@ -1,0 +1,3 @@
+[submodule "projects/odin/EtchASketch"]
+	path = projects/odin/EtchASketch
+	url = git@github.com:QB3-11/EtchASketch.git
