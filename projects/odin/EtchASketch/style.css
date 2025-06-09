@@ -1,0 +1,19 @@
+.screen {
+	display: flex;
+	flex-direction: column;
+
+	height: 90vh;
+	width: 50vw;
+
+	margin: auto;
+
+	justify-content: center;
+}
+.row {
+	flex: 1;
+	display: flex;
+}
+.column {
+	flex: 1;
+	padding: 1vh;
+}
