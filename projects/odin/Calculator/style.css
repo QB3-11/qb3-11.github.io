@@ -36,13 +36,12 @@ body {
 }
 
 .button {
-	flex: 1 1 2vh;
-	padding: 3vh;
-	margin: 5px;
+	flex: 1 1 2rem;
+	padding: 6%;
+	margin: 1%;
 	border-radius: 45%;
 	border: 0px solid;
 
-	max-height: 10vh;
 	font-size: 2em;
 	background-color: #141414;
 	color: #E1E1E1;
@@ -54,10 +53,16 @@ body {
 	background-color: #0F1726;
 	color: #3C71FC;
 }
+.borderButtons:focus {
+	background-color: #0F1750;
+}
 .equal {
 	background-color: #3661FF;
 	color: #FFFFFF;
 	
 	font-size: 2.5em;
 	line-height: 0.2;
+}
+.equal:focus {
+	background-color: #3C11FC;
 }
