@@ -1,6 +1,5 @@
 body {
 	font-family: "Noto Sans Math";
-
 	background-color: #000;
 }
 
@@ -13,31 +12,49 @@ body {
 	min-height: 500px;
 	padding: 10px;
 	margin-top: 80px;
+
+	margin: auto;
+	width: 45vmax;
+
 }
 
 #calculator {
-	width: 400px;
+	width: 85%;
 	padding: 20px;
 	margin: 0;
 }
 
 #currentScreen {
+	display: flex;
 	height: 15vh;
+	text-align:right;
+	justify-content: flex-end;
+	align-items: flex-end;
+	color: #FFF;
+	padding: 10px;
+	font-size: 2em;
+
+	overflow: hidden
 }
-#prevScreen {
+
+#outScreen {
+	display: flex;
 	height: 5vh;
+	text-align: right;
 }
+
 #AC {
 	letter-spacing: -3px;
 }
+
 .row {
 	flex: auto;
 	display: flex;
 }
 
 .button {
-	flex: 1 1 2rem;
-	padding: 6%;
+	flex: 1 1 0;
+	padding: 2vh 2vw;
 	margin: 1%;
 	border-radius: 45%;
 	border: 0px solid;
@@ -55,6 +72,17 @@ body {
 }
 .borderButtons:focus {
 	background-color: #0F1750;
+}
+
+.number,
+.symbols {
+	font-size: 2em;
+}
+
+.symbols {
+	padding: 0px 5px;
+	color: #3C71FC;
+	font-size: 2.2em;
 }
 .equal {
 	background-color: #3661FF;
