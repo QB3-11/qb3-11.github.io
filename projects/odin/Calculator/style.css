@@ -1,5 +1,4 @@
-body {
-	font-family: "Noto Sans Math";
+body { font-family: "Noto Sans Math";
 	background-color: #000;
 }
 
@@ -78,11 +77,11 @@ body {
 }
 
 .number,
-.symbols {
+.symbol {
 	font-size: 2em;
 }
 
-.symbols {
+.symbol {
 	padding: 0px 5px;
 	color: #3C71FC;
 	font-size: 2.2em;

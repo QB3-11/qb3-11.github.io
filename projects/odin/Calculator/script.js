@@ -1,7 +1,12 @@
-const outOPERATIONS = [];
-const calcOPERATIONS = [];
+let OPERATIONS = [];
 
 let visibleScreenOut = false;
+let lastChildSymb = false;
+let ifCalculated = true;
+
+function isNum(string) {
+	return Object.is(Number(string), NaN);
+}
 
 function addSpan(div, className, textContent) {
 	const span = document.createElement("span");
@@ -11,9 +16,113 @@ function addSpan(div, className, textContent) {
 	div.appendChild(span);
 }
 
-function clearScreen() {
-	currentScreen.replaceChildren();
+function refreshDiv(div) {
+	div.replaceChildren();
+	
+	for (let i = 0; i < OPERATIONS.length; i++) {
+		let span = document.createElement('span');
+		let element = OPERATIONS[i];
+
+		if(Number(element)) {
+			span.setAttribute('class', 'number');
+		} else {
+			span.setAttribute('class', 'symbol');
+		}
+		
+		if (Number(element < 0)) {
+			span.textContent = `(${element})`
+		} else {
+			span.textContent = element;
+		}
+		div.appendChild(span);
+	}
 }
+
+function stringToOperations(array) {
+	temp = [];
+	temp_str = "";
+
+	for (let i = 0; i < array.length; i++) {
+
+		if (isNum(array[i]) && array[i] !== '.') {
+			temp.push(temp_str);
+			temp.push(array[i]);
+			temp_str = "";
+			continue;
+		}
+		temp_str += array[i];
+	}
+	if (temp_str.length > 0) {
+		temp.push(temp_str);
+	}
+	OPERATIONS = temp;
+}
+
+function arith(operation, index) {
+	if (index <= -1) return ;
+	let rightNum = Number(OPERATIONS[index + 1]);
+	let leftNum = Number(OPERATIONS[index - 1]);
+
+	if (rightNum) {
+		switch (operation) {
+			
+			case "×":
+				return leftNum * rightNum;
+				break;
+
+			case "÷":
+				return leftNum / rightNum;
+				break;
+
+			case "+":
+				return leftNum + rightNum;
+				break;
+
+			case "−":
+				return leftNum - rightNum;
+				break;
+
+			case "%":
+				return leftNum / 100 * rightNum;
+				break;
+		}
+	} else {
+		if (operation === "%") {
+			return leftNum / 100;
+		} else {
+			return leftNum;
+		}
+	}
+}
+
+function calcOperations(ret) {
+	const BODMAS = ["÷","×","+","−","%"];
+
+	let index = 0;
+
+	for (op of BODMAS) {
+		console.log( OPERATIONS );
+		if (OPERATIONS.length > 1) {
+			do {
+				index = OPERATIONS.indexOf(op);
+				let val = arith(op, index);
+				if (val) {
+					OPERATIONS.splice(index - 1, 3, val);	
+				}
+				continue;
+			}
+			while ( index > 0);
+		} else {
+			break;
+		}
+	}
+	if (!ret) {
+		outScreen.textContent = OPERATIONS[0];
+	} else {
+		return OPERATIONS[0];
+	}
+}
+
 
 function generateGrid(div) {
 	symbols = 
@@ -59,44 +168,73 @@ function generateGrid(div) {
 
 function calculate(e) {
 	
-	outOPERATIONS.push(e.target.id);
-
-	
-	screenOut(e.target.id);
-	screenCurrent(e.target.id);
-
-
-	console.log( outOPERATIONS );
+	screenCurrent(e.target);
 }
 
-function screenOut() {
+function screenOut(value) {
 	if (visibleScreenOut) {
-		outScreen.textContent = result;
+		outScreen.textContent = value;
 	}
 }
 
-function screenCurrent(id) {
+function screenCurrent(target) {
 
-	if (id.length > 1) {
+	if (target.id.length > 1) {
 
-		switch (id) {
+		switch (target.id) {
 			case "AC":
-				clearScreen();
+				visibleScreenOut = false;
+
+				currentScreen.replaceChildren();
+				OPERATIONS.splice(0, OPERATIONS.length);
 				break;
 
 			case "backspace":
-
-			case "plus":
-				addSpan(currentScreen, 'symbols', "+");
+				OPERATIONS.pop();
+				currentScreen.removeChild(currentScreen.lastChild);
 				break;
 
-			case "minus":
-				addSpan(currentScreen, "symbols", "-");
+			case "plusMinus":	
+				visibleScreenOut = true;
+				if (isNum(OPERATIONS[-1]) && OPERATIONS.length > 0) {
+					OPERATIONS.push(-Number(OPERATIONS.pop()));
+					refreshDiv(currentScreen);
+				}
+				break;
+
+			case "equals":
+				currentScreen.replaceChildren();
+				addSpan(currentScreen, 'number', calcOperations(true));
+				OPERATIONS = [];
+
+				ifCalculated = true;
+				break;
+
+			default:
+				if (OPERATIONS.length > 0 && !lastChildSymb) {
+					visibleScreenOut = true;
+					OPERATIONS.push(target.textContent);
+					addSpan(currentScreen, "symbol", target.textContent);
+				}
+				lastChildSymb = true;
 				break;
 		}
 	} else {
-		addSpan(currentScreen, "number", id);
+		lastChildSymb = false;
+
+		if (Number(OPERATIONS[OPERATIONS.length - 1]) < 0) {
+			OPERATIONS.push("+");
+			addSpan(currentScreen, "symbol", "+");
+		}
+		if (ifCalculated){
+			currentScreen.replaceChildren();
+			ifCalculated = false;
+		}
+		OPERATIONS.push(target.id);
+		addSpan(currentScreen, "number", target.id);
 	}
+
+	stringToOperations(OPERATIONS);
 }
 
 const container = document.getElementById("container");
