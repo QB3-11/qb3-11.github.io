@@ -1,6 +1,5 @@
 let OPERATIONS = [];
 
-let visibleScreenOut = false;
 let lastChildSymb = false;
 let ifCalculated = true;
 
@@ -116,6 +115,9 @@ function calcOperations(ret) {
 			break;
 		}
 	}
+	if (OPERATIONS[0] % 1 > 0) {
+		OPERATIONS[0] = Math.round(OPERATIONS[0] * 10000) / 10000;
+	}
 	if (!ret) {
 		outScreen.textContent = OPERATIONS[0];
 	} else {
@@ -183,8 +185,6 @@ function screenCurrent(target) {
 
 		switch (target.id) {
 			case "AC":
-				visibleScreenOut = false;
-
 				currentScreen.replaceChildren();
 				OPERATIONS.splice(0, OPERATIONS.length);
 				break;
@@ -195,7 +195,6 @@ function screenCurrent(target) {
 				break;
 
 			case "plusMinus":	
-				visibleScreenOut = true;
 				if (isNum(OPERATIONS[-1]) && OPERATIONS.length > 0) {
 					OPERATIONS.push(-Number(OPERATIONS.pop()));
 					refreshDiv(currentScreen);
@@ -212,7 +211,6 @@ function screenCurrent(target) {
 
 			default:
 				if (OPERATIONS.length > 0 && !lastChildSymb) {
-					visibleScreenOut = true;
 					OPERATIONS.push(target.textContent);
 					addSpan(currentScreen, "symbol", target.textContent);
 				}
