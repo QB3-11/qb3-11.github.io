@@ -224,7 +224,7 @@ function screenCurrent(target) {
 			OPERATIONS.push("+");
 			addSpan(currentScreen, "symbol", "+");
 		}
-		if (ifCalculated){
+		if (ifCalculated) {
 			currentScreen.replaceChildren();
 			ifCalculated = false;
 		}
