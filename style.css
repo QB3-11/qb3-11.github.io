@@ -1,0 +1,71 @@
+@font-face {
+	font-family: 'Anton';
+	font-weight: 400;
+	src: url('assets/fonts/Anton-Regular.woff2') format('woff2');
+}
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: rgb(210, 210, 210);
+}
+a:link,
+a:visited,
+a:active {
+	color: black;
+	text-decoration: none;
+}
+
+.portfolio,
+.heading-box {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.portfolio {
+	flex-direction: column;
+}
+
+.heading-box {
+	align-items: baseline;
+}
+
+.designs {
+	display: flex;
+	flex-direction: column;
+}
+
+.poster {
+	padding: 2vh 0vh;
+}
+
+.poster-line {
+	height: 2px;
+}
+
+#heading {
+	font-family: 'Anton';
+	width: 100%;
+	font-size: clamp(10vw, 20vw, 25vw);
+	letter-spacing: .5vw;
+	margin: 0px;
+}
+
+#heading-line,
+.poster-line {
+	width: 100%;
+	margin: 0px;
+	border: 0px;
+	background-color: black;
+}
+
+#heading-line {
+	height: 5px;
+}
+
