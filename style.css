@@ -1,12 +1,16 @@
 @font-face {
-	font-family: 'Anton';
-	font-weight: 400;
-	src: url('assets/fonts/Anton-Regular.woff2') format('woff2');
+	font-family: 'Archivo Black';
+	src: url('assets/fonts/Archivo\ Black.woff2') format('woff2');
 }
 
 @font-face {
 	font-family: 'JetBrainsMono';
 	src: url('assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'BebasNeue';
+	src: url('assets/fonts/BebasNeue.woff') format('woff');
 }
 
 * {
@@ -16,15 +20,16 @@
 html, body {
 	padding: 0;
 	margin: 0;
+	color: white;
 }
 
 body {
-	background-color: rgb(210, 210, 210);
+	background-color: black;
 }
 a:link,
 a:visited,
 a:active {
-	color: black;
+	color: white;
 	text-decoration: none;
 }
 
@@ -63,13 +68,12 @@ a:active {
 }
 
 .poster-heading {
-	font-family: 'JetBrainsMono';
+	font-family: 'BebasNeue';
 	margin: 0px;
 	margin-top: 1.5vh;
 	padding: 0px;
 	font-size: 5vw;
 	justify-self: flex-start;
-	color: black;
 }
 
 .poster-desc {
@@ -81,13 +85,12 @@ a:active {
 }
 
 .poster-line {
-	height: 2px;
+	height: 1px;
 }
 
 #heading {
-	font-family: 'Anton';
-	font-size: clamp(10vw, 20vw, 25vw);
-	letter-spacing: .5vw;
+	font-family: 'Archivo Black';
+	font-size: 12vw;
 	margin: 0px;
 	padding-left: 5px;
 }
@@ -97,7 +100,7 @@ a:active {
 	width: 100%;
 	margin: 0px;
 	border: 0px;
-	background-color: black;
+	background-color: white;
 }
 
 #heading-line {
