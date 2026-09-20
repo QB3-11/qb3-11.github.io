@@ -20,17 +20,21 @@
 html, body {
 	padding: 0;
 	margin: 0;
-	color: white;
 }
 
 body {
-	background-color: black;
+	background-color: white;
 }
 a:link,
 a:visited,
 a:active {
-	color: white;
+	color: black;
 	text-decoration: none;
+}
+
+a:hover {
+	color: white;
+	background-color: black;
 }
 
 .portfolio,
@@ -59,21 +63,27 @@ a:active {
 .poster {
 	padding: 2vh 7px;
 	height: auto;
-	width: 50vw;
+	width: min(50vw, 70vh);
+	outline: min(0.2vw, 0.3vh) solid black;
 }
 
 .poster-info {
+	padding-left: min(1vw,1vh);
 	display: flex;
 	flex-direction: column;
 }
 
-.poster-heading {
+.poster-heading,
+.option {
 	font-family: 'BebasNeue';
+	color: white;
 	margin: 0px;
-	margin-top: 1.5vh;
-	padding: 0px;
+	margin-top: min(4vh, 2vw);
+	padding: 1vw 1vh;
 	font-size: 5vw;
 	justify-self: flex-start;
+	align-self: flex-start;
+	background-color: black;
 }
 
 .poster-desc {
@@ -86,18 +96,27 @@ a:active {
 
 .software-used {
 	font-family: 'JetBrainsMono';
-	font-size: 2.5vw;
-	color: yellow;
-	justify-self: flex-end;
+	font-size: min(2vw, 2vh);
+	font-weight: bold;
+	color: blue;
+	background-color: yellow;
+	text-align: center;
+	align-self: flex-start;
+	padding: 1vw 1vh;
 }
 
 .poster-line {
 	height: 1px;
 }
 
+.option {
+	font-size: min(15vh, 100vw);
+	background-color: white;
+}
+
 #heading {
 	font-family: 'Archivo Black';
-	font-size: 12vw;
+	font-size: min(12vw, 10vh);
 	margin: 0px;
 	padding-left: 5px;
 }
@@ -105,11 +124,12 @@ a:active {
 #heading-line,
 .poster-line {
 	width: 100%;
+	height: max(0.2vh, 0.3vw);
 	margin: 0px;
 	border: 0px;
-	background-color: white;
+	background-color: black;
 }
 
 #heading-line {
-	height: 5px;
+	height: min(1vh, 1vw);
 }
